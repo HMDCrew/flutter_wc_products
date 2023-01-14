@@ -9,9 +9,9 @@ File -> pubspec.yaml
 dependencies:
   flutter:
     sdk: flutter
-  # Declare auth path in this file to use module in your project
-  auth:
-    path: ./auth
+  # Declare products path in this file to use module in your project
+  products:
+    path: ./products
 ```
 
 This project is a starting point for a Flutter application.
