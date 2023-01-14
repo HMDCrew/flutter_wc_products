@@ -1,4 +1,4 @@
-# Woocommerce products module for Flutter (null-safe)
+# WooCommerce products module for Flutter (null-safe)
 This module is created for manage products in flutter
 copy the "products" folder into the application of your flutter project
 
@@ -14,13 +14,80 @@ dependencies:
     path: ./products
 ```
 
-This project is a starting point for a Flutter application.
+Widget example file:
+```dart
+// declare this variables to use it in your dart file
+static String baseUrl = "https://dev-dominewptest.pantheonsite.io";
+static Client client = Client();
+static ProductsApi productsApi = ProductsApi(client, baseUrl);
 
-A few resources to get you started if this is your first Flutter project:
+String search = '';
+String productId = '';
+String tempValue = '';
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Example search products
+```dart
+TextField(
+  decoration: const InputDecoration(
+    hintText: 'Search products',
+  ),
+  onChanged: (val) {
+    search = val;
+  },
+),
+ElevatedButton(
+  onPressed: () async {
+    final result = await productsApi.findProducts(page: 0, pageSize: 10, searchTerm: search);
+    setState(() {
+      tempValue = result.asValue!.value.toString();
+    });
+  },
+  child: Container(
+    child: Text('Search'),
+  ),
+),
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Example get products
+```dart
+ElevatedButton(
+  onPressed: () async {
+    final result = await productsApi.getAllProducts(page: 0, pageSize: 10);
+    setState(() {
+      tempValue = result.asValue!.value.toString();
+    });
+  },
+  child: Container(
+    child: Text('getAllProducts'),
+  ),
+),
+```
+
+## Example get product
+```dart
+TextField(
+  decoration: const InputDecoration(
+    hintText: 'Product Id',
+  ),
+  onChanged: (val) {
+    productId = val;
+  },
+),
+ElevatedButton(
+  onPressed: () async {
+    final result = await productsApi.getProduct(productId: productId);
+    setState(() {
+      tempValue = result.asValue!.value.toString();
+    });
+  },
+  child: Container(
+    child: Text('Get Products'),
+  ),
+),
+```
+
+### Note:
+Requirement plugins:
+- [JWT Authentication for WP REST API](https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/)
+- [Customn routes in plugin](https://github.com/HMDCrew/REST-API-WP-Woo)
