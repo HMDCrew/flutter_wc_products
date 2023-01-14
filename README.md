@@ -1,8 +1,18 @@
-# flutter_wc_products
-
-A new Flutter project.
+# Woocommerce products module for Flutter (null-safe)
+This module is created for manage products in flutter
+copy the "products" folder into the application of your flutter project
 
 ## Getting Started
+File -> pubspec.yaml
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  # Declare auth path in this file to use module in your project
+  auth:
+    path: ./auth
+```
 
 This project is a starting point for a Flutter application.
 
