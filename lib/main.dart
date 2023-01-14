@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'Get Products',
+                      'Get Product',
                       style: Theme.of(context).textTheme.button?.copyWith(
                             color: Colors.white,
                             fontSize: 18.0,
